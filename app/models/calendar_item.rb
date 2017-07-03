@@ -1,14 +1,13 @@
 # == Schema Information
 #
-# Table name: actions
+# Table name: calendar_items
 #
 #  id         :integer          not null, primary key
-#  type       :string
-#  name       :string
-#  user_id    :integer
+#  event_date :date
+#  is_weekend :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Action < ActiveRecord::Base
+class CalendarItem < ApplicationRecord
 end

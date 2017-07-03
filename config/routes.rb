@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       namespace :v1 do
       resources :users ,:only =>[:index,:show,:create,:update, :destroy]
       resources :sessions, :only =>[:create,:destroy]
-      resources :items, :only => [:index,:show,:create,:update] 
+      resources :items, :only => [:index,:show,:create,:update]
+      resources :calendar, :only => [:index] 
       end
   end
 end

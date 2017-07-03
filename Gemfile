@@ -25,8 +25,12 @@ gem 'foreman'
 gem 'devise'
 gem 'active_model_serializers'
 gem 'pg'
-gem "passenger", ">= 5.0.25"
-gem "redis-rails" 
+gem 'passenger', '>= 5.0.25'
+gem 'redis-rails'
+gem 'resque'
+gem 'resque-scheduler'
+gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
+gem 'sidekiq'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -45,6 +49,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'ffaker'
   gem 'factory_girl_rails'
+  gem 'pry'
 end
 
 group :development do
