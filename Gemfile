@@ -20,8 +20,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-gem 'puma'
-gem 'foreman'
 gem 'devise'
 gem 'active_model_serializers'
 gem 'pg'
@@ -50,6 +48,10 @@ group :development, :test do
   gem 'ffaker'
   gem 'factory_girl_rails'
   gem 'pry'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false 
 end
 
 group :development do
