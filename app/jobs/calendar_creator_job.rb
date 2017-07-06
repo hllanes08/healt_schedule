@@ -8,7 +8,7 @@ class CalendarCreatorJob < ApplicationJob
     next_date = start_date
     while next_date.year <= start_date.year do
       weekend = (next_date.wday == 0 || next_date.wday == 6)
-      CalendarItem.create event_date: next_date, is_weekend: weekend
+      CalendarItem.create start_event_date: next_date.beginning_of_day, end_event_date: next_date.end_of_day, is_weekend: weekend
       next_date = next_date + 4.day
     end
   end
