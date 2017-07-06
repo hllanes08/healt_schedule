@@ -5,8 +5,7 @@ class API::V1::CalendarController < ApplicationController
     render json: {calendar_items: Calendar.where(user_id: current_user.id).first.calendar_items }
   end
 
-  def create
-    binding.pry
+  def create 
     CalendarCreatorJob.perform_later(params[:start_date], params[:name], params[:ndays], current_user)
     render json: :success
   end
