@@ -2,15 +2,14 @@ class CalendarCreatorJob < ApplicationJob
   queue_as :default
   self.queue_adapter = :resque
 
-  def perform(start_date_string, name, n_days)
+  def perform(start_date_string, name, n_days, current_user)
     # Do something later
     start_date = Date.parse(start_date_string)
-
     if Calendar.exists(start_date, n_days)
-       
+      Calendar.create start_date: start_date, user_id: current_user.id, name: name, n_days: n_days
     else
-      Calendar.create start_date: start_date, user_id: current_user.id, name: name, n_days: n_days 
-      create_calendar_item
+      calendar = Calendar.create start_date: start_date, user_id: current_user.id, name: name, n_days: n_days
+      create_calendar_items(calendar)
     end
   end
 
@@ -18,7 +17,8 @@ class CalendarCreatorJob < ApplicationJob
     next_date = calendar.start_date
     while next_date.year <= calendar.start_date.year do
       weekend = (next_date.wday == 0 || next_date.wday == 6)
-      CalendarItem.create start_event_date: next_date.beginning_of_day, end_event_date: next_date.end_of_day, is_weekend: weekend
+      calendar_item = CalendarItem.create start_event_date: next_date.beginning_of_day, end_event_date: next_date.end_of_day, is_weekend: weekend
+      CalendarsToItem.create calendar_id: calendar.id, calendar_item_id: calendar_item.id
       next_date = next_date + calendar.n_days.day
     end
   end

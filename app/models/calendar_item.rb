@@ -11,4 +11,6 @@
 #
 
 class CalendarItem < ApplicationRecord
+  has_many :calendars_to_item
+  has_many :calendars, through: :calendars_to_item
 end
