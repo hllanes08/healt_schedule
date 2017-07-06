@@ -6,7 +6,7 @@ class API::V1::CalendarController < ApplicationController
   end
 
   def create
-    CalendarCreatorJob.perform_later(params[:start_date])
+    CalendarCreatorJob.perform_later(params[:start_date], params[:name])
     render json: :success
   end
 end
