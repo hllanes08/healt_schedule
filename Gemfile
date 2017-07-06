@@ -31,6 +31,7 @@ gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
 gem 'sidekiq'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem "capistrano-resque", "~> 0.2.2", require: false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
