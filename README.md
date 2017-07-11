@@ -2,7 +2,6 @@
 Ruby api's for create a calendar of events on a range of date with n days of differences, 
 runing resques jobs for events creation
 
-Hosted in AWS=http://ec2-52-89-198-196.us-west-2.compute.amazonaws.com 
 
 ## instalation
 - rvm install ruby-2.3.1
