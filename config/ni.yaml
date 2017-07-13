@@ -1,0 +1,61 @@
+#Nicaragua Holidays for Ruby Holiday Gem
+#
+#
+# Sources
+# https://en.wikipedia.org/wiki/Public_holidays_in_Nicaragua
+---
+months:
+  0:
+  - name: New Year Day
+    regions: [ni]
+    mday: 1
+    type: informal
+  2:
+  - name: Holy Thursday Day
+    regions: [ni]
+    mday: 13
+  4:
+  - name: Labor Day
+    regions: [ni]
+    mday: 1
+  7:
+  - name: Revolution Day
+    regions: [ni]
+    mday: 19
+  8:
+  - name: Griteria Chiquita
+    regions: [ni]
+    mday: 14
+  9:
+  - name: San Jacinto Battle
+    regions: [ni]
+    mday: 14
+  - name: Independence Day
+    regions: [ni]
+    mday: 15
+  10:
+  - name: Indigenous Resistence Day
+    regions: [ni]
+    mday: 12
+  12:
+  - name: Griteria
+    regions: [ni]
+    mday: 7
+  - name: Christmas
+    regions: [ni]
+    mday: 25
+  - name: New Year's Eve
+    regions: [ni]
+    mday: 31
+
+
+
+
+
+  
+
+  
+
+
+
+

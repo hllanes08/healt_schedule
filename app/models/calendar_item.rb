@@ -8,6 +8,7 @@
 #  updated_at       :datetime         not null
 #  start_event_date :datetime
 #  end_event_date   :datetime
+#  is_holiday       :boolean
 #
 
 class CalendarItem < ApplicationRecord

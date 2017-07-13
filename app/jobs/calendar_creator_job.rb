@@ -14,10 +14,12 @@ class CalendarCreatorJob < ApplicationJob
   end
 
   def create_calendar_items(calendar)
+    Holidays.load_custom(Rails.root.join('config') + 'ni.yaml')
     next_date = calendar.start_date
     while next_date.year <= calendar.start_date.year do
+      is_holiday = Holidays.on(next_date, :ni).count > 0
       weekend = (next_date.wday == 0 || next_date.wday == 6)
-      calendar_item = CalendarItem.create start_event_date: next_date.beginning_of_day, end_event_date: next_date.end_of_day, is_weekend: weekend
+      calendar_item = CalendarItem.create start_event_date: next_date.beginning_of_day, end_event_date: next_date.end_of_day, is_weekend: weekend, is_holiday: is_holiday
       CalendarsToItem.create calendar_id: calendar.id, calendar_item_id: calendar_item.id
       next_date = next_date + calendar.n_days.day
     end
