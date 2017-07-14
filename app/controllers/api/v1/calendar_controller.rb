@@ -1,8 +1,13 @@
 class API::V1::CalendarController < ApplicationController
-  before_action :authenticate_with_token!, only: [:index, :create]
+  before_action :authenticate_with_token!, only: [:index, :create, :show]
 
   def index
-    render json: {calendar_items: Calendar.where(user_id: current_user.id).first.calendar_items }
+    render json: {calendas: Calendar.where(user_id: current_user.id) }
+  end
+
+  def show
+    binding.pry
+    render json: { calendar_items: Calendar.find(params[:id]).calendar_items }
   end
 
   def create 

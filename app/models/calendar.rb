@@ -14,7 +14,7 @@
 class Calendar < ApplicationRecord
   has_one :user
   has_many :calendars_to_item
-  has_many :calendar_items, through: :calendars_to_item
+  has_many :calendar_items,-> { where('start_event_date > ?', Time.current)} ,through: :calendars_to_item 
 
   def self.exists(start_date, n_days)
     Calendar.where(start_date: start_date, n_days: n_days).count > 0
