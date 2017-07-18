@@ -1,5 +1,5 @@
 class API::V1::CalendarController < ApplicationController
-  before_action :authenticate_with_token!, only: [:index, :create, :show]
+  before_action :authenticate_with_token!, only: [:index, :create, :show, :destroy]
 
   def index
     render json: {calendars: Calendar.where(user_id: current_user.id) }
@@ -9,6 +9,10 @@ class API::V1::CalendarController < ApplicationController
     render json: { calendar_items: Calendar.find(params[:id]).calendar_items }
   end
 
+  def destroy
+    render json: { success: Calendar.find(params[:id]).destroy} 
+  end
+  
   def create 
     CalendarCreatorJob.perform_later(params[:start_date], params[:name], params[:ndays], current_user)
     render json: :success

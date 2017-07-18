@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :users ,:only =>[:index,:show,:create,:update, :destroy]
       resources :sessions, :only =>[:create,:destroy]
       resources :items, :only => [:index,:show,:create,:update]
-      resources :calendar, :only => [:index, :create, :show] 
+      resources :calendar, :only => [:index, :create, :show, :destroy] 
       end
   end
 end
