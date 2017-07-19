@@ -55,23 +55,6 @@ ActiveRecord::Schema.define(version: 20170713173601) do
     t.integer  "item_type"
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.string   "url"
-    t.string   "name"
-    t.integer  "site_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "trends", force: :cascade do |t|
-    t.integer  "site_id"
-    t.string   "name"
-    t.date     "trend_date"
-    t.integer  "rank"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

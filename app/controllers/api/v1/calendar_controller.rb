@@ -10,7 +10,7 @@ class API::V1::CalendarController < ApplicationController
   end
 
   def destroy
-    render json: { success: Calendar.find(params[:id]).destroy} 
+    render json: { calendar: Calendar.find(params[:id]).destroy} 
   end
   
   def create 

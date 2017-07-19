@@ -5,13 +5,17 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
  #namespace :api, :defaults => {:format => :json}, constraints:{subdomain:'api'}, path:'/' do
   # scope module: :v1,constraints: ApiConstraints.new(version: 1, default: true) do
+  root to: 'api/v1/sessions#new'
 
   namespace :api do
-      namespace :v1 do
+    namespace :v1 do
       resources :users ,:only =>[:index,:show,:create,:update, :destroy]
-      resources :sessions, :only =>[:create,:destroy]
+      resources :sessions, :only =>[:create,:destroy, :new]
       resources :items, :only => [:index,:show,:create,:update]
       resources :calendar, :only => [:index, :create, :show, :destroy] 
-      end
+      get '/login', to: 'sessions#new'
+      post '/login', to: 'sessions#create'
+    end
   end
+
 end
