@@ -15,11 +15,11 @@ Rails.application.routes.draw do
       resources :sessions, :only =>[:create,:destroy, :new]
       resources :items, :only => [:index,:show,:create,:update]
       resources :calendar, :only => [:index, :create, :show, :destroy] 
-      get '/login', to: 'sessions#new'
+      #get '/login', to: 'sessions#new'
       post '/login', to: 'sessions#create'
     end
   end
 
   resources :admin
-
+  get '/login', to: 'api/v1/sessions#new'
 end

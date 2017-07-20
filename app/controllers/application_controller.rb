@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
    include Authenticable
 
   def login_required?
-     redirect_to api_v1_login_path unless user_signed_in?
+     redirect_to login_path unless user_signed_in?
   end
 
 end
