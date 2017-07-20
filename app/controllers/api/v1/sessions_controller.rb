@@ -1,16 +1,21 @@
 class API::V1::SessionsController < ApplicationController
+
   def create
     user_password = params[:session][:password]
     user_email = params[:session][:email]
     user = user_email.present? && User.find_by(email: user_email)
 
-    if user.valid_password? user_password
-      sign_in user, store: false
-        user.generate_authentication_token!
-      user.save
-      render json:  {user:user,success:true}, status: 200 #, location: [:api, user]
-    else
-      render json: { errors: "Invalid email or password",success: false }, status: 422
+    respond_to do |format|
+      if user && user.valid_password?(user_password)
+        sign_in user, store: false
+          user.generate_authentication_token!
+        user.save
+        format.json { render json:  { user:user,success:true}, status: 200 }
+      else
+        format.json { render json: { errors: "Invalid email or password",success: false }, status: 422 }
+        flash.now[:danger] = 'Invalid email/password combination'
+        format.html { render 'layouts/login' }
+      end
     end
   end
 
