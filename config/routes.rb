@@ -1,11 +1,13 @@
 require 'api_constraints'
 Rails.application.routes.draw do
+  get 'admin/index'
+
   devise_for :user
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
  #namespace :api, :defaults => {:format => :json}, constraints:{subdomain:'api'}, path:'/' do
   # scope module: :v1,constraints: ApiConstraints.new(version: 1, default: true) do
-  root to: 'api/v1/sessions#new'
+  root to: 'admin#index'
 
   namespace :api do
     namespace :v1 do
@@ -17,5 +19,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
     end
   end
+
+  resources :admin
 
 end

@@ -1,4 +1,5 @@
 class API::V1::SessionsController < ApplicationController
+  include SessionsHelper
 
   def create
     user_password = params[:session][:password]
@@ -11,9 +12,11 @@ class API::V1::SessionsController < ApplicationController
           user.generate_authentication_token!
         user.save
         format.json { render json:  { user:user,success:true}, status: 200 }
+        format.html { redirect_to '/admin' }
       else
         format.json { render json: { errors: "Invalid email or password",success: false }, status: 422 }
         flash.now[:danger] = 'Invalid email/password combination'
+        log_in user
         format.html { render 'layouts/login' }
       end
     end
