@@ -2,8 +2,7 @@ module Authenticable
 
   # Devise methods overwrites
   def current_user
-    @current_user ||= User.find_by(auth_token: request.headers['Authorization'])
-    @current_user ||= User.find_by(id: session[:user_id]) if request.format.html?
+    @current_user ||= request.format.html? ? login_by_session : login_by_token
   end
 
   def authenticate_with_token!
@@ -23,4 +22,11 @@ module Authenticable
     end
   end
 
+  def login_by_token
+    User.find_by(auth_token: request.headers['Authorization'])
+  end
+
+  def login_by_session
+    User.find_by(id: session[:user_id])
+  end
 end
