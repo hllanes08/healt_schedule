@@ -2,6 +2,11 @@
 lock "3.8.2"
 role :resque_worker, "52.89.198.196"
 role :resque_scheduler, "52.89.198.196"
+task :restart_nginx do
+  on "roor@58.89.198.196" do
+    execute "/etc/init.d/nginx restart"
+  end
+end
 
 set :application, "health_schedule"
 set :repo_url, "https://github.com/hllanes08/healt_schedule.git"
