@@ -8,7 +8,9 @@
 </head>
 <body>
   <div class="container">
-    <%= render 'layouts/navigation'%>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navigation'%>
+    <% end %>
     <%= yield %>
   </div>
 </body>
